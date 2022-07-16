@@ -5,24 +5,28 @@ import java.io.IOException;
 
 // 文件类型
 public class FileTest {
-    private static String root = "E:/code/d3/";
+    private final static String root = "E:/code/d3/";
 
-    public static void CreatFile(String path, String filename) {
+    // 创建文件
+    public static boolean CreatFile(String path, String filename) {
         File file = new File(path + filename);
         try {
-            file.createNewFile();
+            return file.createNewFile();
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return false;
     }
 
-    public static void CreateDir(String path) {
+    // 创建文件夹
+    public static boolean CreateDir(String path) {
         File file = new File(root + path);
-        file.mkdir();
+        return file.mkdir();
     }
 
-    public static void createDirs(String path) {
+    // 创建多级文件夹
+    public static boolean createDirs(String path) {
         File file = new File(root + path);
-        file.mkdirs();
+        return file.mkdirs();
     }
 }
