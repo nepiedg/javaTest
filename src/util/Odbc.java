@@ -23,7 +23,7 @@ public class Odbc {
     static final String USER = "root";
     static final String PASS = "admin";
 
-    public static void testSql() {
+    public static List<Object> testSql() {
         Connection conn = null;
         Statement stmt = null;
         List<Object> list = new ArrayList<>();
@@ -41,7 +41,7 @@ public class Odbc {
             while (rs.next()) {
                 // 映射进实体类
                 User user = convertResultToEntity(rs, User.class);
-                System.out.println(user);
+                list.add(user);
             }
             // 完成后关闭
             rs.close();
@@ -67,6 +67,7 @@ public class Odbc {
                 se.printStackTrace();
             }
         }
+        return list;
     }
 
     public static <T> T convertResultToEntity(ResultSet resultSet, Class<T> tClass) throws Exception {
